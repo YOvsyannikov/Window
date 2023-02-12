@@ -14152,8 +14152,15 @@ __webpack_require__.r(__webpack_exports__);
 // Создаем переменную с ее свойствами
 const forms = () => {
   const form = document.querySelectorAll('forrm'),
-    input = document.querySelectorAll('input');
+    inputs = document.querySelectorAll('input'),
+    phoneInputs = document.querySelectorAll('input[name="user_phone"]');
 
+  // Делаем реплейс что-бы вводились только цифры
+  phoneInputs.forEach(item => {
+    item.addEventListener('input', () => {
+      item.value = item.value.replace(/\D/, '');
+    });
+  });
   //Сообщения формы. Так же могут быть различные спинеры, картинки...
   const message = {
     loading: 'Загрузка...',
