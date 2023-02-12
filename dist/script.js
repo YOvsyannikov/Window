@@ -14124,14 +14124,84 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _slider__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./slider */ "./src/js/slider.js");
 /* harmony import */ var _modules_modals__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/modals */ "./src/js/modules/modals.js");
 /* harmony import */ var _modules_tabs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modules/tabs */ "./src/js/modules/tabs.js");
+/* harmony import */ var _modules_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./modules/forms */ "./src/js/modules/forms.js");
+
 
 
 
 window.addEventListener('DOMContentLoaded', () => {
+  "use strict";
+
   Object(_modules_modals__WEBPACK_IMPORTED_MODULE_1__["default"])();
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.glazing_slider ', '.glazing_block', '.glazing_content', 'active');
   Object(_modules_tabs__WEBPACK_IMPORTED_MODULE_2__["default"])('.decoration_slider', '.no_click', '.decoration_content > div > div', 'after_click');
+  Object(_modules_forms__WEBPACK_IMPORTED_MODULE_3__["default"])();
 });
+
+/***/ }),
+
+/***/ "./src/js/modules/forms.js":
+/*!*********************************!*\
+  !*** ./src/js/modules/forms.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+// Создаем переменную с ее свойствами
+const forms = () => {
+  const form = document.querySelectorAll('forrm'),
+    input = document.querySelectorAll('input');
+
+  //Сообщения формы. Так же могут быть различные спинеры, картинки...
+  const message = {
+    loading: 'Загрузка...',
+    success: 'Спасибо! Скоро с вами свяжутся',
+    failure: 'Что-то пошло не так'
+  };
+  // Постим данные на сервер и возвращаем результат
+  const postData = async (url, data) => {
+    document.querySelector('status').textContent = message.loading;
+    let result = await fetch(url, {
+      method: 'POST',
+      body: data
+    });
+    return await result.text();
+  };
+  // Функция которая очищает инпуты
+  const clearInputs = () => {
+    inputs.forEach(item => {
+      item.value = '';
+    });
+  };
+
+  // Отправление данных для каждой формы без перезагрузки страницы
+  form.forEach(item => {
+    item.addEventListener('submit', e => {
+      e.preventDefault();
+      // Добавляем блок сообщений для пользователя
+      let statusMessage = document.createElement('div');
+      statusMessage.classList.add('status');
+      item.appendChild(statusMessage);
+      //Сбор данныех которые есть в форме
+      const formData = new FormData(item);
+      // Отправляем собранные данные с формы на сервер
+      postData('assets/server.php', formData).then(result => {
+        console.log(result);
+        statusMessage.textContent = message.success;
+      }).catch(() => statusMessage.textContent = message.failure).finally(() => {
+        clearInputs();
+        setTimeout(() => {
+          statusMessage.remove();
+        }, 5000);
+      });
+    });
+  });
+};
+
+//Экспорт по умолчанию
+/* harmony default export */ __webpack_exports__["default"] = (forms);
 
 /***/ }),
 
@@ -14144,7 +14214,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-// Вызов функции модального окна с переменными
+// Создаем переменную модалбного окна с фунцией ее свойствами
 const modals = () => {
   function bindModal(triggerSelector, modalSelector, closeSelector) {
     const trigger = document.querySelectorAll(triggerSelector),
@@ -14202,7 +14272,7 @@ const modals = () => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-// Вызов функции табов с переменными
+// Создаем переменную с ее свойствами
 const tabs = (headerSelector, tabSelector, contentSelector, activeClass) => {
   const header = document.querySelector(headerSelector),
     tab = document.querySelectorAll(tabSelector),

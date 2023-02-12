@@ -1,5 +1,5 @@
 
-// Вызов функции модального окна с переменными
+// Создаем переменную модалбного окна с фунцией ее свойствами
 const modals = () => {
     function bindModal(triggerSelector, modalSelector, closeSelector) {
         const trigger = document.querySelectorAll(triggerSelector),
