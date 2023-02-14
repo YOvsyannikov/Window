@@ -800,7 +800,7 @@
 
     <!-- Modals -->
     <!-- Request a call -->
-    <div class="popup">
+    <div class="popup" data-modal>
         <div class="popup_dialog">
             <div class="popup_content text-center">
                 <button type="button" class="popup_close"><strong>&times;</strong></button>
@@ -818,7 +818,7 @@
     </div>
 
     <!-- Request an engineer -->
-    <div class="popup_engineer">
+    <div class="popup_engineer" data-modal>
         <div class="popup_dialog">
             <div class="popup_content text-center">
                 <button type="button" class="popup_close"><strong>&times;</strong></button>
@@ -836,7 +836,7 @@
     </div>
 
     <!-- Calculator -->
-   <div class="popup_calc">
+   <div class="popup_calc" data-modal>
         <div class="popup_dialog">
             <div class="popup_calc_content text-center">
                 <button type="button" class="popup_calc_close"><strong>&times;</strong></button>
@@ -858,17 +858,17 @@
                      <img src="assets/img/modal_calc/balkon/type3.png" alt="Тип3">
                      <img src="assets/img/modal_calc/balkon/type4.png" alt="Тип4">
                    </div>
-                <input class="form-control" id="width" type="text" placeholder="Ширина" required>
+                <input class="form-control" id="width" type="text" placeholder="Ширина" required type="text">
                 <label for="width">мм</label>
                 <div class="multiplication"><strong>&times;</strong></div>
-                <input class="form-control" id="height" type="text" placeholder="Высота" required>
+                <input class="form-control" id="height" type="text" placeholder="Высота" required type="text">
                 <label for="height">мм</label>
-                <button class="button popup_calc_button">Далее</button>
+                <button class="button popup_calc_button" data-btn disabled>Далее</button>
             </div>
         </div>
     </div> 
 
-   <div class="popup_calc_profile">
+   <div class="popup_calc_profile" data-modal>
         <div class="popup_dialog">
             <div class="popup_calc_profile_content text-center">
                 <button type="button" class="popup_calc_profile_close"><strong>&times;</strong></button>
@@ -894,12 +894,12 @@
                      <span class="label">Теплое</span>
                  </label>
 
-                 <button class="button popup_calc_profile_button">Далее</button>
+                 <button class="button popup_calc_profile_button" data-check disabled>Далее</button>
             </div>
         </div>
     </div> 
 
-    <div class="popup_calc_end">
+    <div class="popup_calc_end" data-modal>
         <div class="popup_dialog">
             <div class="popup_content text-center">
                 <button type="button" class="popup_calc_end_close"><strong>&times;</strong></button>
